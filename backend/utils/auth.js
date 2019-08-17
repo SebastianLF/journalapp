@@ -50,9 +50,11 @@ exports.signup = async (req, res) => {
 }
 
 exports.signin = async (req, res) => {
+    console.log(req);
+    
 
     if(!req.body.password || !req.body.name) {
-        return res.status(400).send({ message: 'Need username and password' })
+        return res.status(400).json({ message: 'Need username and password' })
     }
 
     // Sanitize inputs
