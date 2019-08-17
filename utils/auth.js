@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/users.js')
 
 const createToken = user => {
-    return token = jwt.sign(user, process.env.SECRET_KEY, {expiresIn: '2h'})
+    return jwt.sign(user, process.env.SECRET_KEY, {expiresIn: '2h'})
 }
 
 exports.verifyToken = (req, res, next) => {
@@ -36,11 +36,16 @@ exports.signup = async (req, res) => {
     }
 
     try {
+
         const user = await User.create(newUser)
         const token = createToken(user.toJSON())
-        res.status(201).send(token)
+
+        return res.status(201).send(token)
+
     } catch (e) {
-        res.status(400).send(e)
+
+        return res.status(400).send(e)
+
     }
 }
 

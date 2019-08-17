@@ -3,11 +3,10 @@ const mongoose = require('mongoose')
 const app = express()
 const dotenv = require('dotenv')
 const notesRoute = require('./routes/notes')
-const usersRoute = require('./routes/users')
 const { verifyToken, signup, signin } = require('./utils/auth')
 
 // Handles env variables
-dotenv.config()
+dotenv.config({ debug: true })
 
 // Connect to MONGODB
 mongoose.connect(process.env.DB_URL, {useNewUrlParser: true}, () => {
@@ -26,7 +25,6 @@ app.post('/signup', signup)
 app.post('/signin', signin)
 
 app.use('/api', verifyToken)
-app.use('/api/users', usersRoute)
 app.use('/api/notes', notesRoute)
 
 app.listen(process.env.SERVER_PORT, () => {
