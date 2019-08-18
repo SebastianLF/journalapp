@@ -1,12 +1,20 @@
-import React from 'react'
-import Login from './Login.js'
+import React, { useState } from 'react'
+import Button from "react-bootstrap/Button"
+import Page from './Page.js'
+import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
-    <div className="App">
-      <Login></Login>
-    </div>
-  );
+    <Container>
+      <Row>
+        <Col>
+          <Page />
+        </Col>
+      </Row>
+    </Container>
+  )
 }
 
-export default App;
+export default App
