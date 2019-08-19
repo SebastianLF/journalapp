@@ -11,12 +11,13 @@ exports.verifyToken = (req, res, next) => {
     const token = req.headers.authorization && req.headers.authorization.toString().trim().split(' ')[1]
 
     // Check if token exist in header
-    if(!token) return res.status(401).send({ message: 'Invalid' })
+    if(!token) return res.status(401).send({ message: 'Invalid token' })
 
     // Verify if token is valid
     try {
         const user = jwt.verify(token, process.env.SECRET_KEY)
         req.user = user
+        
         next()
     } catch(e) {
         res.status(401).send({ message: 'Token not valid' })
@@ -38,6 +39,7 @@ exports.signup = async (req, res) => {
     try {
 
         const user = await User.create(newUser)
+        
         const token = createToken(user.toJSON())
 
         return res.status(201).send(token)
@@ -67,7 +69,6 @@ exports.signin = async (req, res) => {
 
         // Checking if user is already in the database
         const userFound = await User.findOne(user)
-        .select('-_id -__v')
         .exec()
 
         if(!userFound) return res.status(400).send({ message: 'Wrong username or password' })

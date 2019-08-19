@@ -10,9 +10,9 @@ Router.route('/')
         return res.status(200).send(notes)
     })
     .post(async (req, res) => {
-
+        
         try {
-
+            
             // query the owner
             const user = await User.findById(req.user._id).exec()
             
