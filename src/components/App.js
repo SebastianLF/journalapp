@@ -1,19 +1,17 @@
-import React, { useState } from 'react'
-import Button from "react-bootstrap/Button"
+import React from 'react'
 import Page from './Page.js'
-import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
+    <>
     <Container>
-      <Row>
-        <Col>
-          <Page />
-        </Col>
-      </Row>
+      <Page />
     </Container>
+    <footer style={{ backgroundColor: '#', padding: '20px', margin: '80px 0 0 0', textAlign: 'center' }}>
+      <p style={{ margin: 0 }}>Done as part of the Chingu pre-cohort tier 3 project. i.e <a target='_blank' href="https://chingu.io/ ">Chingu</a></p>
+    </footer>
+    </>
   )
 }
 
