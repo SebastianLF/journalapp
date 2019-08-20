@@ -3,7 +3,9 @@ const mongoose = require('mongoose')
 const userSchema = new mongoose.Schema({
     name: {
         type: 'String',
-        required : true
+        required: true,
+        trim: true,
+        unique: true
     },
     password: {
         type: 'String',
@@ -15,16 +17,22 @@ const userSchema = new mongoose.Schema({
                 type: 'String',
                 require: true,
                 trim: true,
-                maxLength: 20
+                minlength: 3,
+                maxlength: 20
             },
             body: {
-                type:'String',
+                type: 'String',
                 required: true,
                 trim: true,
-                maxLength: 1000
+                maxlength: 1000
             }
         }
     ]
 })
+
+/* userSchema.path('name').validate(async (value) => {
+    const nameCount = await mongoose.models.User.countDocuments({ name: value });
+    return !nameCount;
+}, 'Name already taken') */
 
 module.exports = mongoose.model('User', userSchema)
