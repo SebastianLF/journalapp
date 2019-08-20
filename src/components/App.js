@@ -5,11 +5,11 @@ import { Container } from "react-bootstrap";
 function App() {
   return (
     <>
-    <Container>
+    <Container style={{ minHeight: '700px' }}>
       <Page />
     </Container>
     <footer style={{ backgroundColor: '#', padding: '20px', margin: '80px 0 0 0', textAlign: 'center' }}>
-      <p style={{ margin: 0 }}>Done as part of the Chingu pre-cohort tier 3 project. i.e <a target='_blank' href="https://chingu.io/ ">Chingu</a></p>
+      <p style={{ margin: 0 }}>Done as part of the Chingu pre-cohort tier 3 project. i.e <a rel='noopener noreferrer' target='_blank' href="https://chingu.io/ ">Chingu</a></p>
     </footer>
     </>
   )

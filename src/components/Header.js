@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav, Link } from 'react-bootstrap'
 
 function Header({ isAuth, setForm }) {
   const Signup = { title: 'Signup', url: '/signup', buttonLabel: 'Sign up' }
@@ -16,7 +16,7 @@ function Header({ isAuth, setForm }) {
   }
 
   return (
-    <Navbar>
+    <Navbar style={{ margin: '0 0 40px 0' }}>
       <Navbar.Brand>Journal APP</Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">

@@ -34,22 +34,23 @@ Router.route('/:id')
         
         try {
 
+            if(!req.body.title || !req.body.body) {
+                return res.status(400).send({ message: 'Title and/or text are wrong' })
+            }
+
             // query notes owner
             const user = await User.findById(req.user._id).exec()
-            console.log(user)
             
             // search for the note to be updated
             let note = user.notes.find((note) => note._id.toString() === req.params.id)
-            console.log('note:' + note)
-            
             if (!note) return res.status(400).send({ message: 'Note not found' })
 
             // update the corresponding note
-            note.body = req.body.body || note.body
-            note.title = req.body.title || note.title
-            const noteUpdated = await user.save()
+            note.body = req.body.body
+            note.title = req.body.title
+            const userUpdated = await user.save()
 
-            res.status(200).end()
+            res.status(200).send(userUpdated.notes)
 
         } catch (e) {
 
@@ -72,9 +73,9 @@ Router.route('/:id')
 
             // delete
             const deleted = user.notes.splice(noteIndex, 1)
-            const noteDeleted = await user.save()
+            const userUpdated = await user.save()
 
-            return res.status(200).end()
+            return res.status(200).send(userUpdated.notes)
 
         } catch (e) {
 

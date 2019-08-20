@@ -22,10 +22,11 @@ function Page() {
   }
 
   return (
-    <div>
-      <Header isAuth={isAuth} setForm={setData} />
-      { content }
-    </div>
+    <>
+      <Header  isAuth={isAuth} setForm={setData} />
+      {content}
+      
+    </>
   )
 }
 

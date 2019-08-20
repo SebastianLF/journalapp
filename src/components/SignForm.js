@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Form, Button, Alert } from 'react-bootstrap'
 import axios from 'axios'
 import { API_HOST } from '../utils/env'
-import Dashboard from './Dashboard'
 
-function SignForm({ setIsAuth, url, title, buttonLabel }) {
+function SignForm({ setIsAuth, url = '/signin', title = 'Signin', buttonLabel = 'Sign in' }) {
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -23,7 +22,7 @@ function SignForm({ setIsAuth, url, title, buttonLabel }) {
         setIsAuth(true)
       })
       .catch(function (e) {
-        setError(JSON.stringify(e))
+        setError(e.message)
       })
   }
 
