@@ -49,6 +49,12 @@ function SignForm({ setIsAuth, url = '/signin', title = 'Signin', buttonLabel = 
           />
         </Form.Group>
         {error ? <Alert variant='danger'>{error}</Alert> : ''}
+        <Form.Group>
+          { title === 'Signin' ? 
+            <Form.Text>try username: guest, password: guest </Form.Text>
+            : ''
+          }
+        </Form.Group>
         <Button
           variant="primary"
           type="submit"
