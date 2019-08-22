@@ -35,7 +35,7 @@ function Dashboard() {
       .then(({ data }) => {
         setNotes(data)
         setTitle('')
-        setBody(' ')
+        setBody('')
       })
       .catch(e => setError(e.message))
   }
@@ -48,12 +48,12 @@ function Dashboard() {
           <Form onSubmit={handleSubmit} style={{ margin: '30px 0 0 0' }}>
             <Form.Group controlId="formBasicTitle">
               <Form.Label>Title</Form.Label>
-              <Form.Control type="text" onChange={e => setTitle(e.target.value)} />
+              <Form.Control type="text" value={title} onChange={e => setTitle(e.target.value)} />
             </Form.Group>
 
             <Form.Group controlId="formBasicBody">
               <Form.Label>Body</Form.Label>
-              <Form.Control as="textarea" rows="3" onChange={e => setBody(e.target.value)} />
+              <Form.Control as="textarea" value={body} rows="3" onChange={e => setBody(e.target.value)} />
             </Form.Group>
             {error ?
               <Alert variant='danger'> {error} </Alert>
