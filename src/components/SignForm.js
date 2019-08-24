@@ -12,17 +12,21 @@ function SignForm({ setIsAuth, url = '/signin', title = 'Signin', buttonLabel = 
     e.preventDefault()
 
     if (!password || !name) {
-      setError('Username or password invalid.')
+      setError('Username or password invalid. Please retry.')
       return
     }
 
     axios.post(`${API_HOST}${url}`, { name, password })
       .then(({ data }) => {
+        if (data.message) {
+          return setError(data.message)
+        }
+
         localStorage.setItem('token', data)
         setIsAuth(true)
       })
       .catch(function (e) {
-        setError(e.message)
+        console.error(e);
       })
   }
 

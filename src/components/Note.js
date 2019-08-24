@@ -68,7 +68,7 @@ function Note({ setNotes, id, title, body }) {
         </Button>
           <Button variant="primary" onClick={editNote}>
             Save Changes
-        </Button>
+          </Button>
         </Modal.Footer>
       </Modal>
     </>
