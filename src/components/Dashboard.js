@@ -31,11 +31,16 @@ function Dashboard() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    if(!title || !body) return setError('Title or body are missing.')
+    if(title.length > 30) return setError('Title is limited to 30 characters maximum.')
+    if(body.length > 1000) return setError('Body is limited to 1000 characters maximum.')
+
     axios.post(`${API_HOST}/api/notes`, { title, body }, headersConfig)
       .then(({ data }) => {
         setNotes(data)
         setTitle('')
         setBody('')
+        setError('')
       })
       .catch(e => setError(e.message))
   }
